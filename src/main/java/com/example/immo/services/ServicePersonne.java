@@ -25,7 +25,7 @@ public class ServicePersonne {
 		return personneRepo.save(personne);
 	}
 	
-	List<Personne> getAllPersonnes() {
+	public List<Personne> getAllPersonnes() {
 		return personneRepo.findAll();
 	}
 	
@@ -37,5 +37,7 @@ public class ServicePersonne {
 		return personneRepo.findById(id)
 				.orElseThrow(() -> new PersonneNotFoundException(("Personne avec id " + id + " non trouve !!!")));
 	}
+
+
 	
 }

@@ -28,7 +28,7 @@ public class ServiceMaison {
 		return maisonRepo.save(maison);
 	}
 	
-	List<Maison> getAllMaisons() {
+	public List<Maison> getAllMaisons() {
 		return maisonRepo.findAll();
 	}
 	

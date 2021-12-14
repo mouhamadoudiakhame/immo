@@ -28,7 +28,7 @@ private final TerrainRepo terrainRepo;
 		return terrainRepo.save(terrain);
 	}
 	
-	List<Terrain> getAllTerrains() {
+	public List<Terrain> getAllTerrains() {
 		return terrainRepo.findAll();
 	}
 	

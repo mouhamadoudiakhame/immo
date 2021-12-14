@@ -27,7 +27,7 @@ public class Personne implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, updatable = false)
-	private long id;
+	private long id_personne;
 	
 	@CreationTimestamp
 	@Column(name="created_at", nullable=false, updatable=false)
@@ -38,7 +38,7 @@ public class Personne implements Serializable{
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
-	@OneToMany(mappedBy = "id")
+	@OneToMany(mappedBy = "id_bien_immobilier")
 	private Set<BienImmobilier> bienImmobiliers;
 	
 	public Date getCreatedAt() {
@@ -60,9 +60,20 @@ public class Personne implements Serializable{
 	@Column(nullable = false)
 	private String prenom;
 	
+
+
+
+
+	@Override
+	public String toString() {
+		return "Personne [id_personne=" + id_personne + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+				+ ", bienImmobiliers=" + bienImmobiliers + ", prenom=" + prenom + ", nom=" + nom + ", telephone="
+				+ telephone + ", adresse=" + adresse + "]";
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id_personne);
 	}
 
 	@Override
@@ -74,15 +85,23 @@ public class Personne implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Personne other = (Personne) obj;
-		return Objects.equals(id, other.id);
+		return id_personne == other.id_personne;
 	}
 
-	public long getId() {
-		return id;
+	public long getId_personne() {
+		return id_personne;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId_personne(long id_personne) {
+		this.id_personne = id_personne;
+	}
+
+	public Set<BienImmobilier> getBienImmobiliers() {
+		return bienImmobiliers;
+	}
+
+	public void setBienImmobiliers(Set<BienImmobilier> bienImmobiliers) {
+		this.bienImmobiliers = bienImmobiliers;
 	}
 
 	public String getPrenom() {

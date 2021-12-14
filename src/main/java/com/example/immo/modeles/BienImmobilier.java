@@ -29,7 +29,7 @@ public class BienImmobilier implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, updatable = false)
-	private long id;
+	private long id_bien_immobilier;
 	
 	@CreationTimestamp
 	@Column(name="created_at", nullable=false, updatable=false)
@@ -62,21 +62,13 @@ public class BienImmobilier implements Serializable{
 	private double prix;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "id_personne")
 	private Personne personne;
 	
 
-
-	@Override
-	public String toString() {
-		return "BienImmobilier [id=" + id + ", codeBienImmobilier=" + codeBienImmobilier + ", libelle=" + libelle
-				+ ", description=" + description + ", adresse=" + adresse + ", imageUrl=" + imageUrl + ", surface="
-				+ surface + ", prix=" + prix + "]";
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id_bien_immobilier);
 	}
 
 	@Override
@@ -88,15 +80,23 @@ public class BienImmobilier implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		BienImmobilier other = (BienImmobilier) obj;
-		return Objects.equals(id, other.id);
+		return id_bien_immobilier == other.id_bien_immobilier;
 	}
 
-	public long getId() {
-		return id;
+	public long getId_bien_immobilier() {
+		return id_bien_immobilier;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId_bien_immobilier(long id_bien_immobilier) {
+		this.id_bien_immobilier = id_bien_immobilier;
+	}
+
+	public Personne getPersonne() {
+		return personne;
+	}
+
+	public void setPersonne(Personne personne) {
+		this.personne = personne;
 	}
 
 	public String getCodeBienImmobilier() {

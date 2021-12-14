@@ -2,7 +2,10 @@ package com.example.immo.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.immo.exceptions.AppartementNotFoundException;
 import com.example.immo.exceptions.PersonneNotFoundException;
@@ -11,6 +14,8 @@ import com.example.immo.modeles.Personne;
 import com.example.immo.repo.AppartementRepo;
 import com.example.immo.repo.PersonneRepo;
 
+@Service
+@Transactional
 public class ServiceAppartement {
 private final AppartementRepo appartementRepo;
 	
@@ -23,7 +28,7 @@ private final AppartementRepo appartementRepo;
 		return appartementRepo.save(appartement);
 	}
 	
-	List<Appartement> getAllAppartements() {
+	public List<Appartement> getAllAppartements() {
 		return appartementRepo.findAll();
 	}
 	
