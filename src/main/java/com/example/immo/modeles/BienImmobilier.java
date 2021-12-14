@@ -1,6 +1,7 @@
 package com.example.immo.modeles;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Entity
@@ -23,7 +29,41 @@ public class BienImmobilier implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false, updatable = false)
-	private Long id;
+	private long id;
+	
+	@CreationTimestamp
+	@Column(name="created_at", nullable=false, updatable=false)
+	private Date createdAt;
+
+
+	@UpdateTimestamp
+	@Column(name="updated_at")
+	private Date updatedAt;
+	
+	@Column(nullable = false, updatable = false)
+	private String codeBienImmobilier;
+	
+	@Column(nullable = false)
+	private String libelle;
+	
+	@Column(nullable = false)
+	private String description;
+	
+	@Column(nullable = false)
+	private String adresse;
+	
+	@Column(nullable = true)
+	private String imageUrl;
+	
+	@Column(nullable = true)
+	private double surface;
+	
+	@Column(nullable = true)
+	private double prix;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Personne personne;
 	
 
 
@@ -51,11 +91,11 @@ public class BienImmobilier implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -119,24 +159,21 @@ public class BienImmobilier implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Column(nullable = false, updatable = false)
-	private String codeBienImmobilier;
-	
-	@Column(nullable = false)
-	private String libelle;
-	
-	@Column(nullable = false)
-	private String description;
-	
-	@Column(nullable = false)
-	private String adresse;
-	
-	@Column(nullable = true)
-	private String imageUrl;
-	
-	@Column(nullable = true)
-	private double surface;
-	
-	@Column(nullable = true)
-	private double prix;
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+
 }
