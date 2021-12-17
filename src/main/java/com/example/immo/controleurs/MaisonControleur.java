@@ -55,18 +55,15 @@ public class MaisonControleur {
 	
 	@PutMapping("/miseajour")
 	public ResponseEntity<Maison> mettreAJourUneMaison(@RequestBody Maison maison) {
-//		 return serviceMaison.trouverMaisonParId(maison.getId_bien_immobilier())
-//			.map(m -> {
-//				m.setLibelle(maison.getLibelle());
-//				m.setAdresse(maison.getAdresse());
-//				m.setDescription(maison.getDescription());
-//				m.setPrix(maison.getPrix());
-//				m.setSurface(maison.getSurface());
-//			})
-//			.orElseGet(() -> {
-//				return serviceMaison.save(maison);
-//			});
-		return null;
+		Maison m =  serviceMaison.trouverMaisonParId(maison.getId_bien_immobilier());
+		m.setLibelle(maison.getLibelle());
+		m.setAdresse(maison.getAdresse());
+		m.setDescription(maison.getDescription());
+		m.setPrix(maison.getPrix());
+		m.setSurface(maison.getSurface());
+		serviceMaison.ajouterMaison(m);
+		return new ResponseEntity<Maison>(m, HttpStatus.OK);
+
 	}
 }
 

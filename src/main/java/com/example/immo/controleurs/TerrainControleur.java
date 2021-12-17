@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.immo.modeles.Maison;
 import com.example.immo.modeles.Terrain;
 import com.example.immo.services.ServiceTerrain;
 
@@ -52,8 +53,14 @@ public class TerrainControleur {
 	
 	@PutMapping("/miseajour")
 	public ResponseEntity<Terrain> mettreAJourUneTerrain(@RequestBody Terrain terrain) {
-		Terrain updatedTerrain = serviceTerrain.ajouterTerrain(terrain);
-		return new ResponseEntity<Terrain>(updatedTerrain, HttpStatus.OK);
+		Terrain t =  serviceTerrain.trouverTerrainParId(terrain.getId_bien_immobilier());
+		t.setLibelle(terrain.getLibelle());
+		t.setAdresse(terrain.getAdresse());
+		t.setDescription(terrain.getDescription());
+		t.setPrix(terrain.getPrix());
+		t.setSurface(terrain.getSurface());
+		serviceTerrain.ajouterTerrain(t);
+		return new ResponseEntity<Terrain>(t, HttpStatus.OK);
 	}
 }
 

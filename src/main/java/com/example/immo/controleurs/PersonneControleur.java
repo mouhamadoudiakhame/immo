@@ -52,7 +52,12 @@ public class PersonneControleur {
 	
 	@PutMapping("/miseajour")
 	public ResponseEntity<Personne> mettreAJourUnePersonne(@RequestBody Personne personne) {
-		Personne updatedPersonne = servicePersonne.ajouterPersonne(personne);
-		return new ResponseEntity<Personne>(updatedPersonne, HttpStatus.OK);
+		Personne p =  servicePersonne.trouverPersonneParId(personne.getId_personne());
+		p.setPrenom(personne.getPrenom());
+		p.setNom(personne.getNom());
+		p.setAdresse(personne.getAdresse());
+		p.setTelephone(personne.getTelephone());
+		servicePersonne.ajouterPersonne(p);
+		return new ResponseEntity<Personne>(p, HttpStatus.OK);
 	}
 }

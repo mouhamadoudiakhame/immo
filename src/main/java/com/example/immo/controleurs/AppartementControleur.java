@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.immo.modeles.Appartement;
+import com.example.immo.modeles.Maison;
 import com.example.immo.services.ServiceAppartement;
 
 @RestController
@@ -51,9 +52,16 @@ public class AppartementControleur {
 	}
 	
 	@PutMapping("/miseajour")
-	public ResponseEntity<Appartement> mettreAJourUneAppartement(@RequestBody Appartement Appartement) {
-		Appartement updatedAppartement = serviceAppartement.ajouterAppartement(Appartement);
-		return new ResponseEntity<Appartement>(updatedAppartement, HttpStatus.OK);
+	public ResponseEntity<Appartement> mettreAJourUneAppartement(@RequestBody Appartement appartement) {
+		 Appartement  m =  serviceAppartement.trouverAppartementParId(appartement.getId_bien_immobilier());
+		m.setLibelle(appartement.getLibelle());
+		m.setAdresse(appartement.getAdresse());
+		m.setDescription(appartement.getDescription());
+		m.setPrix(appartement.getPrix());
+		m.setSurface(appartement.getSurface());
+		m.setNb_chambres(appartement.getNb_chambres());
+		serviceAppartement.ajouterAppartement(m);
+		return new ResponseEntity<Appartement>(m, HttpStatus.OK);
 	}
 }
 
