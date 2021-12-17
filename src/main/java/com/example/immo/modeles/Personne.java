@@ -41,6 +41,18 @@ public class Personne implements Serializable{
 	@OneToMany(mappedBy = "id_bien_immobilier")
 	private Set<BienImmobilier> bienImmobiliers;
 	
+	@Column(nullable = false)
+	private String nom;
+	
+	@Column(nullable = true)
+	private int telephone;
+	
+	@Column(nullable = true)
+	private String adresse;
+	
+	@Column(nullable = false)
+	private String prenom;
+	
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -57,8 +69,7 @@ public class Personne implements Serializable{
 		this.updatedAt = updatedAt;
 	}
 
-	@Column(nullable = false)
-	private String prenom;
+
 	
 
 
@@ -136,14 +147,7 @@ public class Personne implements Serializable{
 		this.adresse = adresse;
 	}
 
-	@Column(nullable = false)
-	private String nom;
-	
-	@Column(nullable = true)
-	private int telephone;
-	
-	@Column(nullable = true)
-	private String adresse;
+
 	
 	
 }

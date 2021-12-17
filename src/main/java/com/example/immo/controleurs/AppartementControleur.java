@@ -17,7 +17,7 @@ import com.example.immo.modeles.Appartement;
 import com.example.immo.services.ServiceAppartement;
 
 @RestController
-@RequestMapping("/Appartements")
+@RequestMapping("/appartements")
 public class AppartementControleur {
 	private final ServiceAppartement serviceAppartement;
 	

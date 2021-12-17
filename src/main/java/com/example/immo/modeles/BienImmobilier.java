@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,8 +41,7 @@ public class BienImmobilier implements Serializable{
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
-	@Column(nullable = false, updatable = false)
-	private String codeBienImmobilier;
+
 	
 	@Column(nullable = false)
 	private String libelle;
@@ -53,7 +53,7 @@ public class BienImmobilier implements Serializable{
 	private String adresse;
 	
 	@Column(nullable = true)
-	private String imageUrl;
+	private String imageUrl = "https://www.maisons-pierre.com/wp-content/uploads/2020/08/Visuel5.jpg";
 	
 	@Column(nullable = true)
 	private double surface;
@@ -61,7 +61,7 @@ public class BienImmobilier implements Serializable{
 	@Column(nullable = true)
 	private double prix;
 	
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "id_personne")
 	private Personne personne;
 	
@@ -99,13 +99,7 @@ public class BienImmobilier implements Serializable{
 		this.personne = personne;
 	}
 
-	public String getCodeBienImmobilier() {
-		return codeBienImmobilier;
-	}
 
-	public void setCodeBienImmobilier(String codeBienImmobilier) {
-		this.codeBienImmobilier = codeBienImmobilier;
-	}
 
 	public String getLibelle() {
 		return libelle;

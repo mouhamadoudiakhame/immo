@@ -17,7 +17,7 @@ import com.example.immo.modeles.Terrain;
 import com.example.immo.services.ServiceTerrain;
 
 @RestController
-@RequestMapping("/Terrains")
+@RequestMapping("/terrains")
 public class TerrainControleur {
 	private final ServiceTerrain serviceTerrain;
 	

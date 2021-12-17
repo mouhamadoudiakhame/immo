@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.immo.modeles.Maison;
 import com.example.immo.services.ServiceMaison;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/maisons")
 public class MaisonControleur {
@@ -25,6 +27,7 @@ public class MaisonControleur {
 		this.serviceMaison = serviceMaison;
 	}
 	
+	@ApiOperation(value = "Recupere tous les rendez-vous!")
 	@GetMapping("/all")
 	public ResponseEntity<List<Maison>> getAllMaisons() {
 		List<Maison> maisons = serviceMaison.getAllMaisons();
@@ -52,8 +55,17 @@ public class MaisonControleur {
 	
 	@PutMapping("/miseajour")
 	public ResponseEntity<Maison> mettreAJourUneMaison(@RequestBody Maison maison) {
-		Maison updatedMaison = serviceMaison.ajouterMaison(maison);
-		return new ResponseEntity<Maison>(updatedMaison, HttpStatus.OK);
+		 return serviceMaison.trouverMaisonParId(maison.getId_bien_immobilier()))
+			.map(m -> {
+				m.setLibelle(maison.getLibelle());
+				m.setAdresse(maison.getAdresse());
+				m.setDescription(maison.getDescription());
+				m.setPrix(maison.getPrix());
+				m.setSurface(maison.getSurface());
+			})
+			.orElseGet(() -> {
+				return serviceMaison.save(maison);
+			});
 	}
 }
 

@@ -18,7 +18,7 @@ import com.example.immo.services.ServiceBienImmobilier;
 import com.example.immo.services.ServiceBienImmobilier;
 
 @RestController
-@RequestMapping("/bins-immobiliers")
+@RequestMapping("/bien-immobiliers")
 public class BienImmobilierControleur {
 	private final ServiceBienImmobilier serviceBienImmobilier;
 	
