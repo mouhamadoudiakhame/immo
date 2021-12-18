@@ -41,8 +41,19 @@ public class BienImmobilier implements Serializable{
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
+	@Column(nullable = true)
+	private String idPersonne = "non-renseigne";
+	
 
 	
+	public String getIdPersonne() {
+		return idPersonne;
+	}
+
+	public void setIdPersonne(String idPersonne) {
+		this.idPersonne = idPersonne;
+	}
+
 	@Column(nullable = false)
 	private String libelle;
 	
