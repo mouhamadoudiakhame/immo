@@ -61,6 +61,7 @@ public class MaisonControleur {
 		m.setDescription(maison.getDescription());
 		m.setPrix(maison.getPrix());
 		m.setSurface(maison.getSurface());
+		m.setPersonne(maison.getPersonne());
 		serviceMaison.ajouterMaison(m);
 		return new ResponseEntity<Maison>(m, HttpStatus.OK);
 
