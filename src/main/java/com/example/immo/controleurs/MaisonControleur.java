@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.immo.modeles.Maison;
 import com.example.immo.services.ServiceMaison;
+import com.example.immo.services.ServicePersonne;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -22,9 +23,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/maisons")
 public class MaisonControleur {
 	private final ServiceMaison serviceMaison;
+	private final ServicePersonne servicePersonne;
 	
-	public MaisonControleur(ServiceMaison serviceMaison) {
+	public MaisonControleur(ServiceMaison serviceMaison, ServicePersonne servicePersonne) {
 		this.serviceMaison = serviceMaison;
+		this.servicePersonne = servicePersonne;
 	}
 	
 	@ApiOperation(value = "Recupere tous les rendez-vous!")
@@ -61,7 +64,9 @@ public class MaisonControleur {
 		m.setDescription(maison.getDescription());
 		m.setPrix(maison.getPrix());
 		m.setSurface(maison.getSurface());
-		m.setPersonne(maison.getPersonne());
+		
+		m.setPersonne(servicePersonne.ajouterPersonne(maison.getPersonne()));
+		m.getPersonne().getBienImmobiliers().add(m);
 		serviceMaison.ajouterMaison(m);
 		return new ResponseEntity<Maison>(m, HttpStatus.OK);
 
