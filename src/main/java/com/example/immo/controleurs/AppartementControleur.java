@@ -48,6 +48,7 @@ public class AppartementControleur {
 	@PostMapping("/ajouter")
 	public ResponseEntity<Appartement> ajouterUneAppartement(@RequestBody Appartement Appartement) {
 		Appartement newAppartement = serviceAppartement.ajouterAppartement(Appartement);
+		newAppartement.setImageUrl("https://media-cdn.tripadvisor.com/media/vr-splice-j/0a/8d/15/26.jpg");
 		return new ResponseEntity<Appartement>(newAppartement, HttpStatus.CREATED);
 	}
 	
