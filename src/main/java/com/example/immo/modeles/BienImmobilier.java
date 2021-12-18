@@ -28,7 +28,7 @@ public class BienImmobilier implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	@Column(nullable = false, updatable = false)
 	private long id_bien_immobilier;
 	
@@ -72,9 +72,9 @@ public class BienImmobilier implements Serializable{
 	@Column(nullable = true)
 	private double prix;
 	
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "id_personne")
-	private Personne personne;
+//	@ManyToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn(name = "id_personne")
+//	private Personne personne;
 	
 
 	@Override
@@ -102,13 +102,13 @@ public class BienImmobilier implements Serializable{
 		this.id_bien_immobilier = id_bien_immobilier;
 	}
 
-	public Personne getPersonne() {
-		return personne;
-	}
-
-	public void setPersonne(Personne personne) {
-		this.personne = personne;
-	}
+//	public Personne getPersonne() {
+//		return personne;
+//	}
+//
+//	public void setPersonne(Personne personne) {
+//		this.personne = personne;
+//	}
 
 
 

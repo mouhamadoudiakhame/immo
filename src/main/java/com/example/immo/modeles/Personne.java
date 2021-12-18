@@ -38,8 +38,8 @@ public class Personne implements Serializable{
 	@Column(name="updated_at")
 	private Date updatedAt;
 	
-	@OneToMany(mappedBy = "id_bien_immobilier")
-	private Set<BienImmobilier> bienImmobiliers;
+//	@OneToMany(mappedBy = "id_bien_immobilier")
+//	private Set<BienImmobilier> bienImmobiliers;
 	
 	@Column(nullable = false)
 	private String nom;
@@ -78,7 +78,7 @@ public class Personne implements Serializable{
 	@Override
 	public String toString() {
 		return "Personne [id_personne=" + id_personne + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
-				+ ", bienImmobiliers=" + bienImmobiliers + ", prenom=" + prenom + ", nom=" + nom + ", telephone="
+				 + ", prenom=" + prenom + ", nom=" + nom + ", telephone="
 				+ telephone + ", adresse=" + adresse + "]";
 	}
 
@@ -107,13 +107,13 @@ public class Personne implements Serializable{
 		this.id_personne = id_personne;
 	}
 
-	public Set<BienImmobilier> getBienImmobiliers() {
-		return bienImmobiliers;
-	}
-
-	public void setBienImmobiliers(Set<BienImmobilier> bienImmobiliers) {
-		this.bienImmobiliers = bienImmobiliers;
-	}
+//	public Set<BienImmobilier> getBienImmobiliers() {
+//		return bienImmobiliers;
+//	}
+//
+//	public void setBienImmobiliers(Set<BienImmobilier> bienImmobiliers) {
+//		this.bienImmobiliers = bienImmobiliers;
+//	}
 
 	public String getPrenom() {
 		return prenom;
