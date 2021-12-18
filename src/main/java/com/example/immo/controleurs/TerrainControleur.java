@@ -48,6 +48,7 @@ public class TerrainControleur {
 	@PostMapping("/ajouter")
 	public ResponseEntity<Terrain> ajouterUneTerrain(@RequestBody Terrain terrain) {
 		Terrain newTerrain = serviceTerrain.ajouterTerrain(terrain);
+		newTerrain.setImageUrl("https://dakarvente.com/media/annonces/pics/8ae57d756b2f11cea3f992411286755c.jpg");
 		return new ResponseEntity<Terrain>(newTerrain, HttpStatus.CREATED);
 	}
 	
