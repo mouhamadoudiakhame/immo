@@ -47,8 +47,9 @@ public class TerrainControleur {
 	
 	@PostMapping("/ajouter")
 	public ResponseEntity<Terrain> ajouterUneTerrain(@RequestBody Terrain terrain) {
+		terrain.setImageUrl("https://dakarvente.com/media/annonces/pics/8ae57d756b2f11cea3f992411286755c.jpg");
 		Terrain newTerrain = serviceTerrain.ajouterTerrain(terrain);
-		newTerrain.setImageUrl("https://dakarvente.com/media/annonces/pics/8ae57d756b2f11cea3f992411286755c.jpg");
+		
 		return new ResponseEntity<Terrain>(newTerrain, HttpStatus.CREATED);
 	}
 	
@@ -60,6 +61,7 @@ public class TerrainControleur {
 		t.setDescription(terrain.getDescription());
 		t.setPrix(terrain.getPrix());
 		t.setSurface(terrain.getSurface());
+		t.setIdPersonne(terrain.getIdPersonne());
 		serviceTerrain.ajouterTerrain(t);
 		return new ResponseEntity<Terrain>(t, HttpStatus.OK);
 	}

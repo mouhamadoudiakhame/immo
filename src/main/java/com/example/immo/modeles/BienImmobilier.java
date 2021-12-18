@@ -43,7 +43,8 @@ public class BienImmobilier implements Serializable{
 	
 	@Column(nullable = true)
 	private String idPersonne = "non-renseigne";
-	
+
+
 
 	
 	public String getIdPersonne() {

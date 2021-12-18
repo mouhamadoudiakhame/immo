@@ -52,6 +52,7 @@ public class MaisonControleur {
 	
 	@PostMapping("/ajouter")
 	public ResponseEntity<Maison> ajouterUneMaison(@RequestBody Maison maison) {
+		maison.setImageUrl("https://dakarvente.com/media/annonces/pics/8ae57d756b2f11cea3f992411286755c.jpg");
 		Maison newMaison = serviceMaison.ajouterMaison(maison);
 		return new ResponseEntity<Maison>(newMaison, HttpStatus.CREATED);
 	}
@@ -65,6 +66,7 @@ public class MaisonControleur {
 		m.setPrix(maison.getPrix());
 		m.setSurface(maison.getSurface());
 		m.setIdPersonne(maison.getIdPersonne()) ;
+		System.out.println("==== : " + m.getIdPersonne());
 		serviceMaison.ajouterMaison(m);
 		return new ResponseEntity<Maison>(m, HttpStatus.OK);
 

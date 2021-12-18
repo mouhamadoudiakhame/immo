@@ -47,8 +47,9 @@ public class AppartementControleur {
 	
 	@PostMapping("/ajouter")
 	public ResponseEntity<Appartement> ajouterUneAppartement(@RequestBody Appartement Appartement) {
+		Appartement.setImageUrl("https://media-cdn.tripadvisor.com/media/vr-splice-j/0a/8d/15/26.jpg");
 		Appartement newAppartement = serviceAppartement.ajouterAppartement(Appartement);
-		newAppartement.setImageUrl("https://media-cdn.tripadvisor.com/media/vr-splice-j/0a/8d/15/26.jpg");
+		
 		return new ResponseEntity<Appartement>(newAppartement, HttpStatus.CREATED);
 	}
 	
@@ -61,6 +62,7 @@ public class AppartementControleur {
 		m.setPrix(appartement.getPrix());
 		m.setSurface(appartement.getSurface());
 		m.setNb_chambres(appartement.getNb_chambres());
+		m.setIdPersonne(appartement.getIdPersonne());
 		serviceAppartement.ajouterAppartement(m);
 		return new ResponseEntity<Appartement>(m, HttpStatus.OK);
 	}
